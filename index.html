@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teen Mental Age Test</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #ffffff;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            max-width: 600px;
+            width: 100%;
+        }
+        h1 {
+            text-align: center;
+            color: #ffffff;
+            margin-bottom: 1.5rem;
+        }
+        .question {
+            margin-bottom: 1.5rem;
+        }
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        select {
+            width: 100%;
+            padding: 0.5rem;
+            border-radius: 5px;
+            border: none;
+            background-color: rgba(255, 255, 255, 0.2);
+            color: #ffffff;
+            cursor: pointer;
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23FFFFFF%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+            background-repeat: no-repeat;
+            background-position: right 0.7rem top 50%;
+            background-size: 0.65rem auto;
+        }
+        select::-ms-expand {
+            display: none;
+        }
+        select option {
+            background-color: #764ba2;
+            color: #ffffff;
+        }
+        button {
+            display: block;
+            width: 100%;
+            padding: 0.75rem;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #result {
+            margin-top: 1.5rem;
+            text-align: center;
+            font-weight: bold;
+        }
+        #progress-bar {
+            width: 100%;
+            height: 10px;
+            background-color: rgba(255, 255, 255, 0.2);
+            margin-bottom: 1rem;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        #progress {
+            width: 0%;
+            height: 100%;
+            background-color: #4CAF50;
+            transition: width 0.3s ease;
+        }
+        .attribution {
+            text-align: center;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        }
+        .attribution a {
+            color: #ffffff;
+            text-decoration: none;
+        }
+        .attribution a:hover {
+            text-decoration: underline;
+        }
+        @media (max-width: 600px) {
+            .container {
+                padding: 1rem;
+            }
+            h1 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Teen Mental Age Test</h1>
+        <div id="progress-bar"><div id="progress"></div></div>
+        <div id="quiz">
+            <div class="question">
+                <label for="q1">How do you typically handle disagreements with friends or family?</label>
+                <select id="q1">
+                    <option value="1">I often lose my temper and say things I regret</option>
+                    <option value="2">I try to avoid conflicts altogether</option>
+                    <option value="3">I express my feelings but sometimes struggle to see other perspectives</option>
+                    <option value="4">I listen to others' viewpoints and try to find a compromise</option>
+                </select>
+            </div>
+            <div class="question">
+                <label for="q2">When faced with a difficult decision, what's your approach?</label>
+                <select id="q2">
+                    <option value="1">I usually go with my gut feeling without much thought</option>
+                    <option value="2">I tend to ask others what they think I should do</option>
+                    <option value="3">I consider the pros and cons but sometimes struggle to decide</option>
+                    <option value="4">I carefully weigh my options and consider long-term consequences</option>
+                </select>
+            </div>
+            <div class="question">
+                <label for="q3">How do you handle stress from school or other responsibilities?</label>
+                <select id="q3">
+                    <option value="1">I often feel overwhelmed and have trouble coping</option>
+                    <option value="2">I try to ignore the stress and hope it goes away</option>
+                    <option value="3">I have some strategies to manage stress, but they don't always work</option>
+                    <option value="4">I use effective coping mechanisms like time management and self-care</option>
+                </select>
+            </div>
+            <div class="question">
+                <label for="q4">How do you view your future and long-term goals?</label>
+                <select id="q4">
+                    <option value="1">I rarely think about the future; I focus on the present</option>
+                    <option value="2">I have some vague ideas but haven't really planned anything</option>
+                    <option value="3">I have goals but sometimes doubt my ability to achieve them</option>
+                    <option value="4">I have clear goals and am actively working towards them</option>
+                </select>
+            </div>
+            <div class="question">
+                <label for="q5">How do you handle your emotions?</label>
+                <select id="q5">
+                    <option value="1">I often feel controlled by my emotions and act impulsively</option>
+                    <option value="2">I try to hide my emotions because I'm not sure how to deal with them</option>
+                    <option value="3">I can usually identify my emotions but sometimes struggle to manage them</option>
+                    <option value="4">I'm generally aware of my emotions and can express them in healthy ways</option>
+                </select>
+            </div>
+            <div class="question">
+                <label for="q6">How do you approach new challenges or learning opportunities?</label>
+                <select id="q6">
+                    <option value="1">I often avoid them because I'm afraid of failing</option>
+                    <option value="2">I reluctantly try but give up easily if it's difficult</option>
+                    <option value="3">I'm willing to try but sometimes doubt my abilities</option>
+                    <option value="4">I see them as opportunities for growth and approach them with enthusiasm</option>
+                </select>
+            </div>
+            <div class="question">
+                <label for="q7">How do you manage your time and responsibilities?</label>
+                <select id="q7">
+                    <option value="1">I often procrastinate and struggle to meet deadlines</option>
+                    <option value="2">I try to keep track of tasks but often feel disorganized</option>
+                    <option value="3">I have a system for managing tasks but sometimes fall behind</option>
+                    <option value="4">I effectively prioritize and manage my time to meet all my responsibilities</option>
+                </select>
+            </div>
+            <div class="question">
+                <label for="q8">How do you handle peer pressure or influence from friends?</label>
+                <select id="q8">
+                    <option value="1">I usually go along with what others want to fit in</option>
+                    <option value="2">I sometimes give in to peer pressure even when I'm uncomfortable</option>
+                    <option value="3">I try to stick to my values but sometimes struggle</option>
+                    <option value="4">I confidently make my own decisions based on my values and beliefs</option>
+                </select>
+            </div>
+            <div class="question">
+                <label for="q9">How do you approach self-reflection and personal growth?</label>
+                <select id="q9">
+                    <option value="1">I rarely think about my actions or how to improve myself</option>
+                    <option value="2">I sometimes reflect on my behavior but struggle to make changes</option>
+                    <option value="3">I try to learn from my experiences and make improvements</option>
+                    <option value="4">I regularly reflect on my actions and actively work on personal growth</option>
+                </select>
+            </div>
+            <div class="question">
+                <label for="q10">How do you handle responsibilities and commitments?</label>
+                <select id="q10">
+                    <option value="1">I often forget or neglect my responsibilities</option>
+                    <option value="2">I try to meet my commitments but sometimes fall short</option>
+                    <option value="3">I usually fulfill my responsibilities but sometimes feel overwhelmed</option>
+                    <option value="4">I consistently meet my commitments and manage my responsibilities well</option>
+                </select>
+            </div>
+            <button onclick="calculateMentalAge()">Get My Results</button>
+        </div>
+        <div id="result"></div>
+        <div class="attribution">
+            Designed by <a href=https://techpromes.github.io/Personal-Portfolio/ target="_blank">Quincy Promes</a>
+        </div>
+    </div>
+
+    <script>
+        function updateProgress() {
+            const totalQuestions = 10;
+            const answeredQuestions = [...document.querySelectorAll('select')]
+                .filter(select => select.value !== "").length;
+            const progress = (answeredQuestions / totalQuestions) * 100;
+            document.getElementById('progress').style.width = `${progress}%`;
+        }
+
+        document.querySelectorAll('select').forEach(select => {
+            select.addEventListener('change', updateProgress);
+        });
+
+        function calculateMentalAge() {
+            const scores = [...Array(10)].map((_, i) => 
+                parseInt(document.getElementById(`q${i+1}`).value)
+            );
+            
+            const totalScore = scores.reduce((a, b) => a + b, 0);
+            let mentalAge, advice;
+
+            if (totalScore <= 20) {
+                mentalAge = "13-14";
+                advice = "You're still developing emotionally, which is completely normal at this stage. Focus on identifying your emotions and learning healthy ways to express them. Don't hesitate to talk to trusted adults about your feelings and challenges. Remember, everyone grows at their own pace!";
+            } else if (totalScore <= 30) {
+                mentalAge = "15-16";
+                advice = "You're making good progress in emotional maturity. Continue working on your decision-making skills and stress management. It's great that you're developing self-awareness. Keep exploring your interests and values, and remember it's always okay to ask for help when you need it.";
+            } else {
+                mentalAge = "17-18";
+                advice = "You show signs of good emotional maturity. Your self-awareness and ability to manage emotions and responsibilities are commendable. Keep developing your coping skills and long-term planning abilities. Remember that personal growth is a lifelong journey, and there's always room for improvement and new experiences.";
+            }
+
+            document.getElementById('result').innerHTML = `
+                <h2>Your Results</h2>
+                <p>Your estimated mental age: ${mentalAge}</p>
+                <p>Advice: ${advice}</p>
+                <p>Remember, this test is just a general guide. Everyone develops at their own pace, and many factors contribute to emotional maturity. If you're struggling with any issues, please reach out to a counselor, therapist, or trusted adult for support.</p>
+            `;
+        }
+    </script>
+</body>
+</html>
